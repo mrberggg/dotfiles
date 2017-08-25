@@ -1,5 +1,7 @@
 # Matt's Dotfiles
 
+*Note: this is a WIP, scripts not currently working*
+
 To help quickly set up a new machine.
 
 Follow these install instructions to setup a new Mac.
