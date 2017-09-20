@@ -75,6 +75,8 @@ cp $CURRENT_DIR/settings/.zshrc $HOME/
 cp $CURRENT_DIR/settings/.gitignore_global $HOME/.gitignore
 cp $CURRENT_DIR/settings/.vimrc $HOME/
 
+git config --global core.excludesfile ~/.gitignore
+
 if [ isMac == 1 ]; then
   # Install valet and park our Code folder
   $HOME/.composer/vendor/bin/valet install && $HOME/.composer/vendor/bin/valet start

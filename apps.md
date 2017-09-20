@@ -12,6 +12,7 @@
 - Healthier
 - iTerm
 - Karabiner
+- Meld
 - Pixelmator
 - PhpStorm
 - Sequel Pro
