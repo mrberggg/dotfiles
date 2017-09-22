@@ -19,7 +19,7 @@ fi
 
 if [ "$isMac" == 0 ] && [ "$isUbuntu" == 0 ]; then
   echo "Sorry, this install script is only for MacOS and Ubuntu."
-else
+fi
 
 echo "Starting setup..."
 
@@ -57,7 +57,11 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 # Install global Composer packages
-/usr/local/bin/composer global require laravel/installer laravel/lumen-installer laravel/valet
+if [ isMac == 1 ]; then
+  /usr/local/bin/composer global require laravel/installer laravel/lumen-installer laravel/valet
+elif [ isUbuntu == 1 ]; then
+  /usr/local/bin/composer global require laravel/installer laravel/lumen-installer
+fi
 
 # Create Code folder
 mkdir -p $HOME/Code
