@@ -48,9 +48,12 @@ elif [ isUbuntu == 1 ]; then
   apt install bash zsh git node php71 python watchman java wget zsh zsh-completions
 fi
 
-# Install Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
+# Install Oh-My-Zsh (only if it's not already installed)
+ohMyZshDirectory=~/.oh-my-zsh
+if [ ! -d "$ohMyZshDirectory" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  chsh -s $(which zsh)
+fi
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
@@ -72,7 +75,7 @@ mkdir -p $HOME/Code
 # Install fonts
 git clone https://github.com/powerline/fonts.git powerline
 ./powerline/install.sh
-rm -r ./powerline
+rm -rf ./powerline
 
 # Install config
 cp $CURRENT_DIR/settings/.zshrc $HOME/
