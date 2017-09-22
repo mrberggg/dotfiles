@@ -15,6 +15,7 @@ alias cdump="composer dumpautoload"
 alias cupdate="composer update --prefer-source"
 alias artisan="php artisan"
 alias weather=curl -4 http://wttr.in
+alias ll="ls -al"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
