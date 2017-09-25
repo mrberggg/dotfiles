@@ -39,7 +39,7 @@ if [ isMac == 1 ]; then
   brew tap caskroom/versions
   brew tap homebrew/php
 
-  brew install bash coreutils findutils git node nvm php71 python wget zsh zsh-completions
+  brew install bash coreutils findutils git node nvm php71 python vim wget zsh zsh-completions
   # Quicklook plugins
   brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json quicklook-csv webpquicklook
 elif [ isUbuntu == 1 ]; then
