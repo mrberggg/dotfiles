@@ -17,6 +17,7 @@ alias cupdate="composer update --prefer-source"
 alias artisan="php artisan"
 alias weather=curl -4 http://wttr.in
 alias ll="ls -al"
+alias vim="/usr/local/bin/vim"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

@@ -22,6 +22,7 @@ set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+set clipboard=unnamed
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -76,10 +77,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-
-" Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
 
 filetype plugin on
 filetype indent on
