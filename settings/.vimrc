@@ -2,8 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" https://github.com/roosta/vim-srcery/
-colorscheme srcery
 syntax enable
 
 " TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
@@ -52,6 +50,9 @@ Plugin 'scrooloose/nerdtree'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+" Set colorscheme
+" https://github.com/roosta/vim-srcery/
+colorscheme srcery
 
 " ================ Turn Off Swap Files ==============
 
