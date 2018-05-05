@@ -56,5 +56,9 @@ cp $CURRENT_DIR/settings/.zshrc $HOME/
 
 # Git settings
 git config --global core.excludesfile ~/.gitignore
+read -p 'What name do you want to use for your git commits?' gitName;
+git config --global user.name "$gitName"
+read -p 'What email address do you want to use for your git commits?' gitEmail;
+git config --global user.email "$gitEmail"
 
 echo "Setup completed"
