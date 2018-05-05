@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Welcome to Matt's magical installer.";
-read -p 'Continue with install? (y/n)' continueWithInstall;
+read -p "Continue with install? (y/n)" continueWithInstall;
 
 if [ "$continueWithInstall" != "y" ]; then
   echo "OK, no hard feelings.";
@@ -18,7 +18,7 @@ mkdir -p $HOME/Code
 
 # Install apt packages
 apt update
-apt install bash zsh git nodejs php php-zip python ack-grep apt-transport-https -y
+apt install bash zsh git nodejs php php-zip python ack-grep apt-transport-https gdebi -y
 
 # .NET Core
 # TODO: Update for Ubuntu 18.04 (Currently works on 16.04)
@@ -30,8 +30,7 @@ apt update
 apt install dotnet-sdk-2.1.105 -y
 
 # Install Oh-My-Zsh (only if it's not already installed)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
@@ -56,10 +55,14 @@ cp $CURRENT_DIR/settings/.vimrc $HOME/
 cp $CURRENT_DIR/settings/.zshrc $HOME/
 
 # Git settings
-git config --global core.excludesfile ~/.gitignore
-read -p 'What name do you want to use for your git commits?' gitName;
-git config --global user.name "$gitName"
-read -p 'What email address do you want to use for your git commits?' gitEmail;
-git config --global user.email "$gitEmail"
+read -p "Would you like to set git defaults? (y/n)" setGitDefaults;
+if [ "$setGitDefaults" == "y" ]; then
+  git config --global core.excludesfile ~/.gitignore
+  read -p 'What name do you want to use for your git commits?' gitName;
+  git config --global user.name "$gitName"
+  read -p 'What email address do you want to use for your git commits?' gitEmail;
+  git config --global user.email "$gitEmail"
+  exit 1;
+fi
 
 echo "Setup completed"

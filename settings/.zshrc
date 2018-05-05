@@ -12,34 +12,21 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys" 
 
 # My aliases
-alias cdump="composer dumpautoload"
-alias cupdate="composer update --prefer-source"
-alias artisan="php artisan"
-alias weather=curl -4 http://wttr.in
 alias ll="ls -al"
-alias vim="/usr/local/bin/vim"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+alias c.="code ."
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+export UPDATE_ZSH_DAYS=30
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -59,27 +46,19 @@ ZSH_CUSTOM=$DOTFILES
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast git-extras git-flow wd)
+plugins=(git git-extras wd)
 
 # Activate Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/ssl/bin:$HOME/.npm-global/bin:$HOME/.composer/vendor/bin:vendor/bin/:$PATH:~/bin:ANDROID_HOME=/usr/local/opt/android-sdk"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/ssl/bin:$HOME/.npm-global/bin:$HOME/.composer/vendor/bin:vendor/bin/:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export EDITOR='vim'
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"

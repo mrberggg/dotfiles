@@ -1,11 +1,5 @@
 # Applications
 
-## Ubuntu
-- Chrome
-- Firefox
-- Hyper
-- VS Code
-
 ## Windows
 - 1Password
 - Chrome
@@ -22,3 +16,9 @@
 - VirtualBox
 - VS Code
 - Visual Studio
+
+## Ubuntu
+- Chrome
+- Firefox
+- Hyper
+- VS Code
