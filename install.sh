@@ -17,8 +17,8 @@ CURRENT_DIR=$PWD
 mkdir -p $HOME/Code
 
 # Install apt packages
-# apt update
-# apt install bash zsh git nodejs php php-zip python ack-grep apt-transport-https -y
+apt update
+apt install bash zsh git nodejs php php-zip python ack-grep apt-transport-https -y
 
 # .NET Core
 # TODO: Update for Ubuntu 18.04 (Currently works on 16.04)
