@@ -17,16 +17,17 @@ CURRENT_DIR=$PWD
 mkdir -p $HOME/Code
 
 # Install apt packages
-apt update
-apt install bash zsh git nodejs php php-zip python ack apt-transport-https -y
+# apt update
+# apt install bash zsh git nodejs php php-zip python ack-grep apt-transport-https -y
 
 # .NET Core
-# TODO: Update for Ubuntu 18.04
+# TODO: Update for Ubuntu 18.04 (Currently works on 16.04)
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-artful-prod artful main" > /etc/apt/sources.list.d/dotnetdev.list'
+sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+apt install apt-transport-https -y
 apt update
-apt install dotnet-sdk-2.1.105
+apt install dotnet-sdk-2.1.105 -y
 
 # Install Oh-My-Zsh (only if it's not already installed)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -47,7 +48,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Install fonts
 /usr/local/bin/npm install git://github.com/adobe-fonts/source-code-pro.git#release
-apt install fonts-powerline
+apt install fonts-powerline -y
 
 # Install config
 cp $CURRENT_DIR/settings/.gitignore_global $HOME/.gitignore
