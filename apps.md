@@ -1,22 +1,24 @@
 # Applications
 
-## MacOS
+## Ubuntu
+- Chrome
+- Firefox
+- Hyper
+- VS Code
+
+## Windows
 - 1Password
-- AirMail 2
-- Alfred
 - Chrome
 - Dropbox
-- Fantastical
+- OneDrive
 - Firefox
-- Goofy
-- Healthier
-- iTerm
-- Karabiner
-- Meld
-- Pixelmator
-- PhpStorm
-- Sequel Pro
-- Simplenote
-- Sip
-- Slack
-- Visual Studio Code
+- Hyper
+- MS Office
+- MS To-Do
+- RetroArch
+- SharpKeys
+- Spotify
+- Typora (markdown)
+- VirtualBox
+- VS Code
+- Visual Studio

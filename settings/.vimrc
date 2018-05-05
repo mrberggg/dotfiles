@@ -42,10 +42,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'wincent/command-t'
 Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'roosta/srcery'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

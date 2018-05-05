@@ -8,92 +8,54 @@ if [ "$continueWithInstall" != "y" ]; then
   exit 1;
 fi
 
-# Is this a Mac or Ubuntu install
-isMac=0
-isUbuntu=0
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  isMac=1
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-  isUbuntu=1
-fi
-
-if [ "$isMac" == 0 ] && [ "$isUbuntu" == 0 ]; then
-  echo "Sorry, this install script is only for MacOS and Ubuntu."
-fi
-
 echo "Starting setup..."
 
+# Variables
 CURRENT_DIR=$PWD
 
-sudo chown -R $(whoami) /usr/local
+# Create Code folder
+mkdir -p $HOME/Code
 
-# Check for Homebrew and install if we don't have it
-if test ! $(which brew); then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+# Install apt packages
+apt update
 
-if [ isMac == 1 ]; then
-  # Update Homebrew recipes and tap
-  brew update
-  brew tap caskroom/cask
-  brew tap caskroom/versions
-  brew tap homebrew/php
+apt install bash zsh git nodejs php php-zip python ack apt-transport-https -y
 
-  brew install bash coreutils findutils git node nvm php71 python vim wget zsh zsh-completions
-  # Quicklook plugins
-  brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json quicklook-csv webpquicklook
-elif [ isUbuntu == 1 ]; then
-  apt update
-
-  apt install bash zsh git node php71 python watchman java wget zsh zsh-completions
-fi
+# .NET Core
+# TODO: Update for Ubuntu 18.04
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-artful-prod artful main" > /etc/apt/sources.list.d/dotnetdev.list'
+apt update
+apt install dotnet-sdk-2.1.105
 
 # Install Oh-My-Zsh (only if it's not already installed)
-ohMyZshDirectory=~/.oh-my-zsh
-if [ ! -d "$ohMyZshDirectory" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  chsh -s $(which zsh)
-fi
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 # Install global Composer packages
-if [ isMac == 1 ]; then
-  /usr/local/bin/composer global require laravel/installer laravel/lumen-installer laravel/valet
-elif [ isUbuntu == 1 ]; then
-  /usr/local/bin/composer global require laravel/installer laravel/lumen-installer
-fi
+/usr/local/bin/composer global require laravel/installer
 
-# Create Code folder
-mkdir -p $HOME/Code
+# Install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Install global npm packages
-/usr/local/bin/npm install -g create-react-app typescript
+/usr/local/bin/npm install -g create-react-app @vue/cli serve
 
 # Install fonts
-git clone https://github.com/powerline/fonts.git powerline
-./powerline/install.sh
-rm -rf ./powerline
+/usr/local/bin/npm install git://github.com/adobe-fonts/source-code-pro.git#release
+apt install fonts-powerline
 
 # Install config
-cp $CURRENT_DIR/settings/.zshrc $HOME/
 cp $CURRENT_DIR/settings/.gitignore_global $HOME/.gitignore
 cp $CURRENT_DIR/settings/.vimrc $HOME/
+cp $CURRENT_DIR/settings/.zshrc $HOME/
 
+# Git settings
 git config --global core.excludesfile ~/.gitignore
-
-if [ isMac == 1 ]; then
-  # Install valet and park our Code folder
-  $HOME/.composer/vendor/bin/valet install && $HOME/.composer/vendor/bin/valet start
-  cd $HOME/Code
-  valet start && valet park
-  cd $CURRENT_DIR
-  # Set OS X preferences
-  source .macos
-  # Open our list of apps to install by hand
-  open -a TextEdit $CURRENT_DIR/apps.md
-fi
 
 echo "Setup completed"
