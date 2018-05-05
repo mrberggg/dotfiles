@@ -18,14 +18,13 @@ mkdir -p $HOME/Code
 
 # Install apt packages
 apt update
-
 apt install bash zsh git nodejs php php-zip python ack apt-transport-https -y
 
 # .NET Core
 # TODO: Update for Ubuntu 18.04
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-artful-prod artful main" > /etc/apt/sources.list.d/dotnetdev.list'
+sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-artful-prod artful main" > /etc/apt/sources.list.d/dotnetdev.list'
 apt update
 apt install dotnet-sdk-2.1.105
 
