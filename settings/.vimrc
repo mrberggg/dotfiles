@@ -54,17 +54,16 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'w0rp/ale'                          " alternative to syntastic
 Plugin 'vim-syntastic/syntastic'
 Plugin 'DataWraith/auto_mkdir'             " Allows you to save files into directories that do not exist yet
-Plugin 'ctrlpvim/ctrlp.vim'                 " 
+Plugin 'ctrlpvim/ctrlp.vim'                " Quick open files
+Plugin 'tomasr/molokai'                    " Monokai theme
 Plugin 'scrooloose/nerdcommenter'          " quickly (un)comment lines
 Plugin 'scrooloose/nerdtree'               " 
-Plugin 'roosta/srcery'                     " 
 Plugin 'ervandew/supertab'                 " Perform all your vim insert mode completions with Tab
 Plugin 'godlygeek/tabular'                 " 
 Plugin 'vim-airline/vim-airline'           " more informative status/tabline
 Plugin 'vim-airline/vim-airline-themes'    " airline styling
 Plugin 'tpope/vim-dispatch'
 Plugin 'airblade/vim-gitgutter'            " shows a git diff in the gutter (sign column) and stages/reverts hunks
-Plugin 'rakr/vim-one'                      " One color theme
 Plugin 'tpope/vim-repeat'                  " Enable repeating supported plugin maps with .
 Plugin 'tpope/vim-surround'                " makes working w/ quotes, braces,etc. easier
 
@@ -96,7 +95,6 @@ endif
 
 " Set colorscheme
 " Go to https://github.com/roosta/vim-srcery/ for color palette
-colorscheme srcery
 
 " ================ Turn Off Swap Files ==============
 
