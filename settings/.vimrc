@@ -62,6 +62,7 @@ Plugin 'ervandew/supertab'                 " Perform all your vim insert mode co
 Plugin 'godlygeek/tabular'                 " 
 Plugin 'vim-airline/vim-airline'           " more informative status/tabline
 Plugin 'vim-airline/vim-airline-themes'    " airline styling
+Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-dispatch'
 Plugin 'airblade/vim-gitgutter'            " shows a git diff in the gutter (sign column) and stages/reverts hunks
 Plugin 'tpope/vim-repeat'                  " Enable repeating supported plugin maps with .
@@ -84,7 +85,7 @@ call vundle#end()            " required
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='luna'
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 let g:ctrlp_map='<c-p>'
 let g:ctrlp_cmd='CtrlP'
@@ -176,7 +177,6 @@ nnoremap <leader>s :mksession<CR>
 nnoremap <leader>nt :NERDTree<CR>
 nnoremap <leader>tt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>wl <C-w>l<CR>
 nnoremap <leader>wr <C-w>h<CR>
 nnoremap <leader>wL <C-w>H<CR>
@@ -185,4 +185,4 @@ nnoremap <leader>wR <C-w>L<CR>
 vmap <tab> >gv
 vmap <s-tab> <gv
 " Comment/uncomment lines
-map <leader>/ <plug>NERDCommenterToggle
+map <leader>cc <plug>NERDCommenterToggle
