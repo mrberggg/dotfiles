@@ -47,7 +47,7 @@ ZSH_CUSTOM=$DOTFILES
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras wd)
+plugins=(git git-extras wd vi-mode)
 
 # Activate Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
