@@ -1,64 +1,85 @@
-# Path to your dotfiles installation.
-export DOTFILES=$HOME/.dotfiles
+setopt AUTO_CD
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME"taybalt-custom"
-ZSH_THEME="ys" 
-
-# My aliases
-alias ll="ls -al"
-alias c.="code ."
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=30
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
 
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$DOTFILES
+HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras wd vi-mode)
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY         # Share history between all sessions.
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 
-# Activate Oh-My-Zsh
-source $ZSH/oh-my-zsh.sh
-
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/ssl/bin:$HOME/.npm-global/bin:$HOME/.composer/vendor/bin:vendor/bin/:$PATH"
-
-# You may need to manually set your language environment
+# Exports
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
-
-# ssh
+export EDITOR='nvim'
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""' # speedier, see https://martinheinz.dev/blog/110
 export SSH_KEY_PATH="~/.ssh/id_rsa"
+export PNPM_HOME="$HOME/Library/pnpm"
+export NVM_DIR="$HOME/.nvm"
+export PATH="$HOME/.local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/ssl/bin:$HOME/.npm-global/bin:$HOME/.composer/vendor/bin:vendor/bin/:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Program inits
+path+=("$(brew --prefix)/share/zsh/site-functions") # Pure prompt
+autoload -U promptinit; promptinit # Pure prompt
+prompt pure # Pure prompt
+eval "$(zoxide init zsh)" # zoxide
+eval "$(fzf --zsh)" # fzf
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # nvm
+
+# Import non-versioned config
+if [ -f ~/.zsh-local ]; then
+    source ~/.zsh-local
+else
+    print "404: ~/.zsh-local not found."
+fi
+
+# Aliases
+alias ll="lsd -aAlGX --header"
+alias c.="code ."
+alias zed="nvim ~/.zshrc"
+alias ved="nvim ~/.config/nvim/init.lua"
+alias src="source ~/.zshrc"
+alias p="pnpm"
+alias v="nvim"
+alias f="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
+alias lg="lazygit"
+alias cd="z"
+alias t="tmux"
+alias y="yazi"
+
+# Git aliases
+alias g='git'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcm='git checkout $(git_main_branch)'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gf='git fetch origin'
+alias gm='git merge'
+alias gl='git pull'
+alias gp='git push'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+function gbda() {
+  git branch --no-color --merged | command grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | command xargs git branch --delete 2>/dev/null
+}
+
+
