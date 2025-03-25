@@ -1,0 +1,34 @@
+[include]
+  path = ~/.config/delta/catppuccin.gitconfig
+
+[user]
+  name = 
+  email = 
+
+[push]
+ autoSetupRemote = true
+
+[core]
+  pager = difft
+  editor = nvim
+
+[pager]
+  difftool = true
+
+[difftool]
+  prompt = false
+
+[diff]
+  external = difft
+  tool = difft
+
+[merge]
+  conflictstyle = difft
+
+[branch]
+  sort = -committerdate
+
+
+[credential]
+  helper = /usr/local/share/gcm-core/git-credential-manager
+
